@@ -1,0 +1,7 @@
+fastapi==0.115.11
+uvicorn
+gunicorn
+sqlmodel
+pydantic
+sqlalchemy
+timescaledb
