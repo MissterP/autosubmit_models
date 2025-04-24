@@ -12,8 +12,8 @@ services:
     develop:
       watch:
         - action: rebuild
-          path: Dockerfile
+          path: docker/Dockerfile.web
         - action: rebuild
           path: requirements.txt
         - action: rebuild
-          path: compose.yaml
+          path: docker/compose.dev.yaml
