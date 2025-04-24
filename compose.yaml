@@ -1,0 +1,19 @@
+services:
+  app:
+    image: autosubmit_models:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "8002:8002"
+    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload #Eliminar reload para produccion
+    volumes: 
+      - ./src:/code:rw
+    develop:
+      watch:
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: requirements.txt
+        - action: rebuild
+          path: compose.yaml
