@@ -2,13 +2,13 @@ services:
   app:
     image: autosubmit_models:v1
     build:
-      context: .
-      dockerfile: Dockerfile.web
+      context: ../
+      dockerfile: docker/Dockerfile.web
     ports:
       - "8002:8002"
-    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload #Eliminar reload para produccion
+    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload 
     volumes: 
-      - ./src:/code:rw
+      - ../src:/code:rw
     develop:
       watch:
         - action: rebuild
