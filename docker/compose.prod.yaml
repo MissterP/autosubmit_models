@@ -1,11 +1,29 @@
 services:
   app:
     image: autosubmit_models:v1
+    container_name: autosubmit_models_app_prod
     build:
       context: ../
       dockerfile: docker/Dockerfile.web
     ports:
       - "8002:8002"
-    command: uvicorn main:app --host 0.0.0.0 --port 8002
+    command: python -m src.main --mode api
     volumes: 
-      - ../src:/code:rw
+      - type: bind
+        source: ../.env
+        target: /code/.env
+        read_only: true
+      - type: bind
+        source: ${ESARCHIVE_PATH}
+        target: /code/esarchive
+        read_only: true
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+    user: "${UID:-1000}:${GID:-1000}"
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    container_name: autosubmit_models_timescaledb_prod
+    ports:
+      - "5433:5432"

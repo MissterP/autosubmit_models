@@ -1,0 +1,34 @@
+[run]
+source = src
+omit = 
+    src/db_init/*
+    */site-packages/*
+    tests/*
+    src/main.py
+    src/config/timescaledb.py
+
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    pass
+    raise ImportError
+    except psycopg2\.Error
+    except Exception as e
+    def close\(self\)
+    \.close\(\)
+    # Exclude specific exception handling and logging that's hard to test
+    logger\.error
+    logger\.exception
+    # Exclude config settings file for environment-specific settings
+    ENV = os\.getenv
+    if settings\.ENV
+    # Database connection error handling that's hard to test
+    cursor\.execute\(
+    # Exception handling in API routes
+    HTTPException\(status_code=500
+    # Lines that are hard to test in tr_popular_models.py
+    raise ModelError

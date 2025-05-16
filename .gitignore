@@ -3,4 +3,37 @@ venv/
 
 #Python cache
 __pycache__/
+.pytest_cache/
 
+# Environment file
+.env
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# Test database
+*.db
+*.sqlite
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Lint reports
+.flake8
+.pylintrc
+flake-report/
+lint-report.txt
+
+# Security reports 
+bandit-report.json
+safety-report.txt
+
+# Build files
+dist/
+build/
+*.egg-info/
